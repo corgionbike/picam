@@ -1,0 +1,69 @@
+{% extends "index.html" %}
+{% block title %}SETTINGS{% endblock %}
+{% block tab %}
+
+<div class="col-md-12">
+    <form method="POST" action="{{ url_for('settings')}}">
+        {{form.hidden_tag()}}
+        {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                {% for field, errors in form.errors.items() %}
+                <li> {{ form[field].label }}: {{ ', '.join(errors) }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        <div class="form-row align-items-center">
+            <div class="form-group col-auto">
+                {{ form.resolution.label }}
+                {{ form.resolution(class_="form-control") }}
+            </div>
+            <div class="form-group col-auto">
+                {{ form.awb_mode.label }}
+                {{ form.awb_mode(class_="form-control") }}
+            </div>
+            <div class="form-group col-auto">
+                {{ form.iso.label }}
+                {{ form.iso(class_="form-control", type="number") }}
+            </div>
+            <div class="form-group col-auto">
+                {{ form.rotation.label }}
+                {{ form.rotation(class_="form-control", type="number") }}
+            </div>
+            <div class="form-group col-auto">
+                {{ form.saturation.label }}
+                {{ form.saturation(class_="form-control", type="number") }}
+            </div>
+            <div class="form-group col-auto">
+                {{ form.sharpness.label }}
+                {{ form.sharpness(class_="form-control", type="number") }}
+            </div>
+            <div class="form-group col-auto">
+                {{ form.annotate_text_size.label }}
+                {{ form.annotate_text_size(class_="form-control", type="number") }}
+            </div>
+        </div>
+        <div class="form-row align-items-center">
+            <div class="form-group">
+                <div class="form-check form-check-inline">
+                    {{ form.monohrom(class_="form-check-input") }}
+                    {{ form.monohrom.label(class_="form-check-label") }}
+                </div>
+                <div class="form-check form-check-inline">
+                    {{ form.auto_night(class_="form-check-input") }}
+                    {{ form.auto_night.label(class_="form-check-label") }}
+                </div>
+                <div class="form-check form-check-inline">
+                    {{ form.annotate_text(class_="form-check-input") }}
+                    {{ form.annotate_text.label(class_="form-check-label") }}
+                </div>
+
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <a href="{{ url_for('settings_reset')}}" class="btn btn-outline-danger float-right">Сбросить</a>
+    </form>
+</div>
+
+{% endblock %}

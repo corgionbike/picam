@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+{% block title %}ОШИБКА{% endblock %}
+{% block tab %}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="alert alert-danger" role="alert">
+            <i class="fas fa-frown"></i> Упс... Что-то не так с камерой!
+            <p>{{ error }}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

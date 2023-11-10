@@ -1,0 +1,43 @@
+{% extends "index.html" %}
+{% block title %}ARCHIVE{% endblock %}
+{% block tab %}
+
+    <div class="row align-self-center">
+        <div class="col-sm-6"><a id="btn_shoot_to_arch" href="{{ url_for('make_shoot2archive') }}"
+                            class="btn btn-outline-dark btn-block"><i
+                class="fas fa-camera"></i><i class="fas fa-circle-notch fa-spin" style="display:none"
+                role="status" aria-hidden="true"></i></a></div>
+       
+        <div class="col-sm-6"><a id="btn_clear_arch" href="{{ url_for('clear_archive') }}"
+                            class="btn btn-outline-danger btn-block"><i
+                class="fas fa-trash"></i></a></div>
+        
+        
+        <div class="col" id='msg_empty_arch' {% if photo_archive %} style="display: none;" {% endif %} >
+                <p class="text-uppercase text-muted text-center" style="padding-top: 50px">Архив пуст</p>
+        </div>
+    </div>
+    <div class="card-columns" style="padding-top: 20px; display: inline-block;">
+    {% for photo in photo_archive %}
+    <div class="card" id="photo-card">
+        <a href="{{ photo }}?t={{ time.strftime('%Y%m%d%H%M%S') }}" target="_blank">
+            <img src="{{ photo_archive_thumb[loop.index0] }}" data-large="{{ photo }}?t={{ time.strftime('%Y%m%d%H%M%S') }}"
+                    class="img-thumbnail mx-auto d-block" title="{{ photo_archive_abs[loop.index0] }}">
+        <div class="card-body text-center text-muted"></a>
+            <p>{{ photo_archive_abs[loop.index0]|getdatetime }}</p>
+            <a id="btn_del_photo_{{ photo_archive_abs[loop.index0] }}" href="/#del" data-href ="{{ url_for('del_photo_in_archive', shot=photo_archive_abs[loop.index0]) }}"
+            class="btn btn-outline-dark btn-block"><i
+                    class="fas fa-trash"></i></a>
+
+            
+        </div>
+        </div>
+
+
+    {% endfor %}
+</div>
+    </tbody>
+</table>
+
+
+{% endblock %}

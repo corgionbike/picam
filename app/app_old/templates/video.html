@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+{% block title %}VIDEO{% endblock %}
+{% block tab %}
+
+
+{% for video in video_archive %}
+<div class="embed-responsive embed-responsive-16by9">
+    <video height="auto" controls="controls" preload="none">
+        <source src="/static/video/{{ video }}?time={{ time }}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+    </video>
+</div>
+{% endfor %}
+
+{% if not video_archive %}
+<p class="text-uppercase text-muted" style="margin-top: 20px">Видео нет</p>
+{% endif %}
+
+<a id="btn_make_video" class="btn btn-outline-dark btn-block" href="{{ url_for('make_video', sec=15) }}"
+   style="margin-top: 10px"><i
+        class="fas fa-video fa-3x"></i> </a>
+
+{% endblock %}

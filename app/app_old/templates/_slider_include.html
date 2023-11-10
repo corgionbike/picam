@@ -1,0 +1,33 @@
+<div class="col align-self-center">
+    {% if not photo_list %}
+    <p class="text-uppercase text-muted text-center" style="margin-top: 20px">Снимков нет</p>
+    {% else %}
+    <div id="carouselControls" class="carousel slide" data-ride="carousel" data-interval=false>
+        <ol class="carousel-indicators">
+            {% for photo in photo_list %}
+            <li data-target="#carouselIndicators" data-slide-to="{{ loop.index0 }}"
+                class="{% if loop.first %} active {% endif %}"></li>
+            {% endfor %}
+        </ol>
+        <div class="carousel-inner">
+            {% for photo in photo_list %}
+            <div class="carousel-item {% if loop.first %} active {% endif %}">
+                <a href="{{ photo }}?t={{ time }}" target="_blank">
+                    <img id="thumb_{{ loop.index0 }}" class="d-block w-100"
+                         src="{{ photo_list_thumbnail[loop.index0] }}?t={{ time }}" alt="slide">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Назад</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Вперед</span>
+        </a>
+    </div>
+    {% endif %}
+</div>
+

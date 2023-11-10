@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="col align-self-center">
+    <div class="card" style="margin-top: 10px">
+        <div class="card-header">
+            <ul class="nav nav-pills card-header-pills nav-justified">
+                <li class="nav-item">
+                    <a class="text-uppercase nav-link {% if request.path == url_for('index') %} active {% endif %}"
+                       href="{{ url_for('index')}}"><i class="fas fa-camera"></i> Фото</a>
+                </li>
+
+                <li class="nav-item" style="display: none">
+                    <a class="text-uppercase nav-link {% if request.path == url_for('video') %} active {% endif %}"
+                       href="{{ url_for('video')}}"><i class="fas fa-video"></i> Видео</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="text-uppercase nav-link {% if request.path == url_for('archive') %} active {% endif %}"
+                       href="{{ url_for('archive')}}"><i class="fas fa-archive"></i> Архив</a>
+                </li>
+                <li class="nav-item">
+                    <a class="text-uppercase nav-link {% if request.path == url_for('settings') %} active {% endif %}"
+                       href="{{ url_for('settings')}}"><i class="fas fa-cogs"></i> Настройки</a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="card-body">
+            {% block tab %}
+            <div class="row">
+                {% include '_slider_include.html' %}
+            </div>
+            <div class="row" style="margin-top: 15px">
+                <div class="col">
+                    {% include '_shoot_index_form_include.html' %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col" style="display: none">
+                    {% include '_tele_include.html' %}
+                </div>
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block sripts %}
+{{ super() }}
+{% if request.path == url_for('index') %}
+<!-- <script>
+    var evt = new Event();
+    m = new Magnifier(evt);
+    m.attach({
+        thumb: '#thumb_0',
+        large: '{{ photo_list[0] }}?t={{ time }}',
+        mode: 'inside',
+        zoom: 3,
+        zoomable: true
+    });
+</script> -->
+{% endif %}
+{% endblock %}

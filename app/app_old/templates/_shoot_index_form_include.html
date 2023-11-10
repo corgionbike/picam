@@ -1,0 +1,30 @@
+<form action="{{ url_for('make_shoot') }}" method="get" class="form-inline ">
+    <div class="col">
+        <button type="submit" id="btn_shoot" class="btn btn-outline-dark btn-block">
+            <i class="fas fa-camera fa-2x"></i> <i class="fas fa-circle-notch fa-spin" style="display:none"
+                                                      role="status" aria-hidden="true"></i>
+        </button>
+    </div>
+    <div class="col-md-2">
+        <a href="#reload" id="btn_reload" class="btn btn-outline-dark btn-block">
+            <i class="fas fa-sync fa-2x"></i>
+        </a>
+    </div>
+    <div class="col-md-2">
+        <a href="#" id="btn_arch" class="btn btn-outline-dark btn-block">
+            <i class="fas fa-archive fa-2x"></i>
+        </a>
+    </div>
+    <div class="col-md-4">
+        <div class="input-group flex-nowrap">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-images"></i></span>
+            </div>
+            <input type="number" name="s" value=1 max="100" min="1" class="form-control">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-clock"></i> </span>
+            </div>
+            <input type="number" name="t" value=1 max="60" min="1" class="form-control">
+        </div>
+    </div>
+</form>
